@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Button, Stack, Container, Toast, Row, Col } from "react-bootstrap";
+import { Button, Stack, Container } from "react-bootstrap";
 
 export const ItemCount = ({ stock, initial, onAdd }) => {
   const [quantity, setQuantity] = useState(stock > 0 ? initial : 0);
-  const [show, setShow] = useState(false);
 
   function increaseQuantity() {
     if (stock > 0 && stock > quantity) {
@@ -17,9 +16,6 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
     }
   }
 
-  function onAdd() {
-    setShow(true);
-  }
 
   return (
     <Container className="w-25 text-center d-grid">
@@ -43,17 +39,11 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
         size="lg"
         variant="success"
         disabled={quantity * stock == 0}
-        onClick={onAdd}
+        onClick={() => onAdd(quantity)}
       >
         {stock > 0 ? "Agregar al carrito" : "Sin Stock :("}
       </Button>
-      <div className="mx-auto pt-5">
-        <Toast onClose={() => setShow(false)} bg="info" show={show} delay={3000} autohide>
-          <Toast.Body>
-            Se agregaron {quantity} productos al carrito.
-          </Toast.Body>
-        </Toast>
-      </div>
+
     </Container>
   );
 };

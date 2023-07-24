@@ -1,0 +1,10 @@
+.card {
+  width: 18rem;
+  min-height: 454px;
+  box-shadow: 5px 5px 8px -3px grey;
+}
+
+.card-img-top {
+  max-height: 286px;
+  object-fit: contain;
+}
