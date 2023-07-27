@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button, Stack, Container } from "react-bootstrap";
+import './ItemCount.css'
 
 export const ItemCount = ({ stock, initial, onAdd }) => {
-  const [quantity, setQuantity] = useState(stock > 0 ? initial : 0);
+  const [quantity, setQuantity] = useState(initial);
 
   function increaseQuantity() {
     if (stock > 0 && stock > quantity) {
@@ -18,7 +19,7 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
 
 
   return (
-    <Container className="w-25 text-center d-grid">
+    <Container className="text-center d-grid">
       <Stack className="mx-auto w-50" direction="horizontal">
         <Button
           className="ms-4 btn btn-light fs-5"

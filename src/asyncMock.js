@@ -40,3 +40,11 @@ export function getProducts () {
     }, 2000)
   });
 }
+
+export function getProductById (productId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(products.find(product => product.id === productId));
+    }, 2000)
+  });
+}

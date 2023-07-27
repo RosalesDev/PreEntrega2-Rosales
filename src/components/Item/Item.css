@@ -5,6 +5,15 @@
 }
 
 .card-img-top {
-  max-height: 286px;
+  height: 17rem;
   object-fit: contain;
+}
+
+.card .btn {
+  background-color: #384155;
+}
+
+.card .btn:hover{
+  background-color: #E5F876;
+  color: #384155;
 }

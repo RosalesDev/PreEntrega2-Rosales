@@ -42,7 +42,7 @@ function ItemListContainer({ greeting }) {
 
   return (
     <Container>
-      <h1 className="pt-4 text-center">{greeting}</h1>
+      <h1 className="my-4 text-center">{greeting}</h1>
       {/* <ItemCount stock={5} initial={1} onAdd={onAdd} /> */}
       {products.length == 0 
         ? <Container className="text-center mt-5">
