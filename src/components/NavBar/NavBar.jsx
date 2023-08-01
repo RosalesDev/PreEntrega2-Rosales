@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "../CartWidget/CartWidget";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -17,9 +18,11 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="px-3" id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <NavLink className={'nav-link'} to={'/'}>Home</NavLink>
+            {/* <Nav.Link href="#home">Home</Nav.Link> */}
             <NavDropdown title="Categorías" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">CPUs</NavDropdown.Item>
+              <NavLink className={'dropdown-item'} to={'/category/CPU'}>CPUs</NavLink>
+              {/* <NavDropdown.Item href="#action/3.1">CPUs</NavDropdown.Item> */}
               <NavDropdown.Item href="#action/3.2">Gabinetes</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">
                 Motherboards

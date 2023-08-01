@@ -1,6 +1,6 @@
 const products = [
   {
-    id: 1,
+    id: '1',
     title: "Procesador AMD Ryzen 5 5600G",
     price: 100000,
     category: "CPU",
@@ -11,7 +11,7 @@ const products = [
     AMD cuenta con un catálogo de productos que se adaptan a los requerimientos de todo tipo de usuarios: juegos en línea, edición a gran escala, contenido en múltiples plataformas y más.`,
   },
   {
-    id: 2,
+    id: '2',
     title: "Procesador Intel Core I7 12700KF",
     price: 314000,
     category: "CPU",
@@ -22,7 +22,7 @@ const products = [
     La superioridad tecnológica de INTEL es un beneficio para todo tipo de profesionales. Asegura el mejor rendimiento de las aplicaciones, de la transferencia de datos y la conexión con otros elementos tecnológicos.`,
   },
   {
-    id: 3,
+    id: '3',
     title: "Procesador AMD Ryzen 9 7959X3D",
     price: 710000,
     category: "CPU",
@@ -37,7 +37,7 @@ export function getProducts () {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products);
-    }, 2000)
+    }, 1000)
   });
 }
 
@@ -45,6 +45,14 @@ export function getProductById (productId) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products.find(product => product.id === productId));
-    }, 2000)
+    }, 1000)
+  });
+}
+
+export function getProductsByCategory (categoryId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(products.filter(product => product.category === categoryId));
+    }, 1000)
   });
 }

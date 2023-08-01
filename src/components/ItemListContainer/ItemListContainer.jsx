@@ -1,8 +1,9 @@
 import { Container, Spinner } from "react-bootstrap";
 // import { ItemCount } from "../ItemCount/ItemCount";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../asyncMock";
+import { getProductsByCategory, getProducts } from "../../asyncMock";
 import { ItemList } from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
 
 function ItemListContainer({ greeting }) {
   // const [toastStatus, setToastStatus] = useState({
@@ -10,16 +11,20 @@ function ItemListContainer({ greeting }) {
   //   currentQuantity: 0,
   // });
   const [products, setProducts] = useState([]);
+  const { categoryId } = useParams();
 
   useEffect(() => {
-    getProducts()
-      .then((data) => {
-        setProducts(data);
+    
+    const asyncFunction = categoryId ? getProductsByCategory : getProducts;
+
+    asyncFunction(categoryId)
+      .then((response) => {
+        setProducts(response);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [categoryId]);
 
   // const messages = [
   //   `Se agregaron ${toastStatus.currentQuantity} productos al carrito.`,
