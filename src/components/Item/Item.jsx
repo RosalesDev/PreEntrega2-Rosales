@@ -1,16 +1,15 @@
 import { Card, Button } from "react-bootstrap"
-import './Item.css'
 import { Link } from "react-router-dom";
+import './Item.css'
 
 export const Item = ({ id, title, price, pictureURL }) => {
   return (
-    <Card className="mx-auto">
+    <Card className="mx-auto my-2">
       <Card.Img className="p-3" variant="top" src={pictureURL} />
       <Card.Body className="d-grid">
-        <Card.Title>{title}</Card.Title>
+        <Card.Title className="card-title-container">{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
         <Link className="btn" to={`/item/${id}`}>Ver detalle</Link>
-        {/* <Button variant="primary">Ver detalle</Button> */}
       </Card.Body>
     </Card>
   );
