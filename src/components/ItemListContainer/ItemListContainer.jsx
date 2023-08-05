@@ -31,7 +31,7 @@ function ItemListContainer({ greeting }) {
       ) : (
         <Container className="my-5">
           <h1 className="my-4 text-center">{greeting}</h1>
-          <ItemList items={products} />
+          <ItemList items={products} isLoading={!isLoading} />
         </Container>
       )}
     </>
