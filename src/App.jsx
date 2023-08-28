@@ -1,20 +1,30 @@
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import '../src/App.css';
+import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "../src/App.css";
+import { CartProvider } from "./context/CartContext";
+import { Cart } from "./components/Cart/Cart";
 
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<ItemListContainer greeting={'Bienvenido a Geek Palace'}/>} />
-        <Route path='/category' element={<ItemListContainer />} />
-        <Route path='/category/:categoryId' element={<ItemListContainer />} />
-        <Route path='/item/:itemId' element={<ItemDetailContainer />} />
-        <Route path='*' element={<h1>404 Página no encontrada.</h1>} />
-      </Routes>
+      <CartProvider>
+        <NavBar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ItemListContainer greeting={"Bienvenido a Geek Palace"} />
+            }
+          />
+          <Route path="/category" element={<ItemListContainer />} />
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
+          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<Cart></Cart>} />
+          <Route path="*" element={<h1>404 Página no encontrada.</h1>} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   );
 }

@@ -36,9 +36,9 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
         </Button>
       </Stack>
       <Button
-        className="mt-4 fs-6 text-light"
+        className="mt-5 fs-6 text-light"
         size="lg"
-        variant="success"
+        variant="primary"
         disabled={quantity * stock == 0}
         onClick={() => onAdd(quantity)}
       >

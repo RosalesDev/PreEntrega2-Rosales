@@ -1,5 +1,4 @@
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
@@ -72,9 +71,7 @@ function NavBar() {
               </ul>
             </li>
           </ul>
-          <Nav.Link href="#">
             <CartWidget />
-          </Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

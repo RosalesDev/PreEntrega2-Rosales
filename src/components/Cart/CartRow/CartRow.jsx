@@ -1,0 +1,24 @@
+import { Button, Row } from "react-bootstrap";
+
+export const CartRow = ({product, removeItem }) => {
+
+
+  return (
+    <Row className="my-2">
+      <img
+        className="col-3 col-lg-2 cart-row-img"
+        src={product.pictureURL}
+      ></img>
+      <div className="col-6 col-lg-5 my-auto text-center">{product.title}</div>
+      <span className="col-2 col-lg-2 my-auto">X{product.quantity}</span>
+      <span className="col-10 col-lg-2 my-auto">${product.quantity * product.price}</span>
+      <Button
+        className="col-1 col-lg-1 w-auto m-auto"
+        variant="danger"
+        onClick={() => removeItem(product.id)}
+      >
+        <i className="text-center bi bi-trash3-fill"></i>
+      </Button>
+    </Row>
+  );
+};

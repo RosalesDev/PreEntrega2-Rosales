@@ -87,7 +87,7 @@ export function getProducts () {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products);
-    }, 1000)
+    }, 500)
   });
 }
 
@@ -95,7 +95,7 @@ export function getProductById (productId) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products.find(product => product.id === productId));
-    }, 1000)
+    }, 500)
   });
 }
 
@@ -103,6 +103,6 @@ export function getProductsByCategory (categoryId) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products.filter(product => product.category === categoryId));
-    }, 1000)
+    }, 500)
   });
 }

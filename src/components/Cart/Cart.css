@@ -1,0 +1,5 @@
+.cart-row-img {
+  max-width: 100px;
+  height: 100px;
+  object-fit: scale-down;
+}
