@@ -1,6 +1,7 @@
 import { Container, Spinner } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { getProductsByCategory, getProducts } from "../../asyncMock";
+import {db} from "../../config/firebaseConfig"
+import {where, query, collection, getDocs} from "firebase/firestore"
 import { ItemList } from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 
@@ -10,15 +11,26 @@ function ItemListContainer({ greeting }) {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const asyncFunction = categoryId ? getProductsByCategory : getProducts;
 
-    asyncFunction(categoryId)
-      .then((response) => {
-        setProducts(response);
-        setIsLoading(false);
+    setIsLoading(true);
+
+    const collectionRef = categoryId
+      ? query(collection(db,'products'), where('category', '==', categoryId))
+      : collection(db, 'products');
+
+    getDocs(collectionRef)
+      .then(response => {
+        const productsAdapted = response.docs.map(doc => {
+          const data = doc.data();
+          return {id: doc.id, ...data}
+        });
+        setProducts(productsAdapted);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(error => {
+        console.log('Error al obtener los productos: ',error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [categoryId]);
 
