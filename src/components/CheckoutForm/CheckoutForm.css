@@ -1,0 +1,13 @@
+div .form-card-btn {
+  background-color: #384155;
+  color: #E5F876;
+}
+
+div .form-card-btn:hover{
+  background-color: #E5F876;
+  color: #384155;
+}
+
+.form-label{
+  font-size: small;
+}

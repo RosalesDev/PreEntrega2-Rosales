@@ -54,7 +54,7 @@ export const Cart = () => {
         >
           <Link
             className="btn w-100 p-0 my-2 text-light fw-semibold"
-            to={`/cart`}
+            to={`/checkout`}
           >
             <span className="me-1">Terminar Compra</span>
             <i className="bi bi-arrow-right-circle"></i>

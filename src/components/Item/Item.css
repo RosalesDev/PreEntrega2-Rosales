@@ -9,13 +9,13 @@
   object-fit: contain;
 }
 
-.card .btn {
+.card .item-card-btn {
   max-height: 2.5rem;
   background-color: #384155;
   color: #E5F876;
 }
 
-.card .btn:hover{
+.card .item-card-btn:hover{
   background-color: #E5F876;
   color: #384155;
 }

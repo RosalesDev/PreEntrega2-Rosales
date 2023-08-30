@@ -9,7 +9,7 @@ export const Item = ({ id, title, price, pictureURL }) => {
       <Card.Body className="d-grid">
         <Card.Title className="card-title-container">{title}</Card.Title>
         <Card.Text>${price}</Card.Text>
-        <Link className="btn" to={`/item/${id}`}>Ver detalle</Link>
+        <Link className="btn item-card-btn" to={`/item/${id}`}>Ver detalle</Link>
       </Card.Body>
     </Card>
   );
