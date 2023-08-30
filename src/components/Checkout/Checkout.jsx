@@ -3,7 +3,7 @@ import { CartContext } from "../../context/CartContext";
 import { CheckoutForm } from "../CheckoutForm/CheckoutForm";
 import { Timestamp, addDoc, collection, documentId, getDocs, query, where, writeBatch } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
-import { Container, Alert, Button, Spinner } from "react-bootstrap";
+import { Container, Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
