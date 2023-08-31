@@ -12,14 +12,3 @@
   height: 17rem;
   object-fit: contain;
 }
-
-.card .item-card-btn {
-  max-height: 2.5rem;
-  background-color: #384155;
-  color: #E5F876;
-}
-
-.card .item-card-btn:hover{
-  background-color: #E5F876;
-  color: #384155;
-}

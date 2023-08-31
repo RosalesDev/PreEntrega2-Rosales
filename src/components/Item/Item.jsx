@@ -11,7 +11,6 @@ export const Item = ({ id, title, price, pictureURL }) => {
         <Card.Body className="d-grid">
           <Card.Text className="text-start my-0">
             <small className="fw-medium fs-5">${price}</small>
-            {/* <h4 className="my-0">${price}</h4> */}
             <small className="d-block fw-medium text-success">Envío gratis</small>
           </Card.Text>
           <Card.Text className="text-start">{title}</Card.Text>
