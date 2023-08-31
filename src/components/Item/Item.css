@@ -1,7 +1,11 @@
 .card {
   width: 18rem;
   min-height: 454px;
-  box-shadow: 5px 5px 8px -3px grey;
+  box-shadow: 1px 2px 8px -3px grey;
+}
+
+.card:hover {
+  box-shadow: 2px 5px 18px -4px grey;
 }
 
 .card-img-top {
@@ -18,9 +22,4 @@
 .card .item-card-btn:hover{
   background-color: #E5F876;
   color: #384155;
-}
-
-.card-title-container {
-  font-size: 1rem !important;
-  max-height: 40px;
 }

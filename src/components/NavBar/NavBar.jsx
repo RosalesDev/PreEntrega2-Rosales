@@ -7,6 +7,7 @@ function NavBar() {
   return (
     <Navbar
       expand="lg"
+      sticky="top"
       className="bg-body-tertiary"
       bg="dark"
       data-bs-theme="dark"
