@@ -65,20 +65,6 @@ export const ItemDetail = ({
 
   return (
     <>
-      {/* <Container fluid className="">
-        <Toast
-          className=""
-          onClose={() => setShow(false)}
-          bg="warning"
-          show={true}
-          delay={3000}
-          autohide
-        >
-          <Toast.Body className="text-center text-light">
-            {toastStatus.currentQuantity > 1 ? messages[0] : messages[1]}
-          </Toast.Body>
-        </Toast>
-      </Container> */}
       <Container className="detail-container mt-5 mb-2">
         <Row className="text-center py-4">
           <Col>

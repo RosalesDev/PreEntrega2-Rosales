@@ -2,8 +2,32 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
+import { db } from "../../config/firebaseConfig";
+import { where, query, collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 function NavBar() {
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const categoriesRef = collection(db, "categories");
+    let fetchCategories = [];
+
+    getDocs(categoriesRef)
+      .then((response) => {
+        response.docs.map((category) => {
+          fetchCategories.push({ id: category.id, ...category.data() });
+        });
+        setCategories(fetchCategories);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <Navbar
       expand="lg"
@@ -37,42 +61,24 @@ function NavBar() {
                 Categorías
               </a>
               <ul className="dropdown-menu">
-                <li>
-                  <NavLink className={"dropdown-item"} to={"/category/cpu"}>
-                    CPU
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={"dropdown-item"}
-                    to={"/category/gabinetes"}
-                  >
-                    Gabinetes
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={"dropdown-item"}
-                    to={"/category/motherboard"}
-                  >
-                    Motherboard
-                  </NavLink>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <NavLink
-                    className={"dropdown-item nav-link"}
-                    to={"/category/"}
-                  >
-                    Todo
-                  </NavLink>
-                </li>
+                {isLoading
+                  ? null
+                  : categories.map((category) => {
+                      return (
+                        <li key={category.id}>
+                          <NavLink
+                            className={"dropdown-item"}
+                            to={`/category/${category.key}`}
+                          >
+                            {category.description}
+                          </NavLink>
+                        </li>
+                      );
+                    })}
               </ul>
             </li>
           </ul>
-            <CartWidget />
+          <CartWidget />
         </Navbar.Collapse>
       </Container>
     </Navbar>
