@@ -19,7 +19,6 @@ export const ItemDetailContainer = () => {
     getDoc(docRef)
       .then((response) => {
         const data = response.data();
-        console.log("Data: ", data);
         const productAdapted = { id: response.id, ...data };
         if (Object.values(productAdapted).length > 1) {
           setProduct(productAdapted);

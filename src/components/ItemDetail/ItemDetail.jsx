@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Container, Row, Toast, Button } from "react-bootstrap";
 import { ItemCount } from "../ItemCount/ItemCount";
 import { CartContext } from "../../context/CartContext";
+import Swal from "sweetalert2";
 import "./ItemDetail.css";
 
 export const ItemDetail = ({
@@ -19,7 +20,7 @@ export const ItemDetail = ({
     currentQuantity: 0,
   });
 
-  const {addItem} = useContext(CartContext);
+  const { cart, addItem } = useContext(CartContext);
 
   const messages = [
     `Se agregaron ${toastStatus.currentQuantity} productos al carrito.`,
@@ -27,6 +28,18 @@ export const ItemDetail = ({
   ];
 
   function onAdd(quantity) {
+    const productIsInCart = cart
+      .map((product) => product.id === id)
+      .some((product) => product === true);
+    if (productIsInCart) {
+      Swal.fire({
+        title: "¡Atención!",
+        text: "El producto ya se encuentra en el carrito.",
+        icon: "warning",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
     const itemForCart = {
       id,
       title,
@@ -52,12 +65,12 @@ export const ItemDetail = ({
 
   return (
     <>
-      <Container className="position-relative">
+      {/* <Container fluid className="">
         <Toast
-          className="position-absolute top-50 end-0"
+          className=""
           onClose={() => setShow(false)}
           bg="warning"
-          show={toastStatus.show}
+          show={true}
           delay={3000}
           autohide
         >
@@ -65,8 +78,8 @@ export const ItemDetail = ({
             {toastStatus.currentQuantity > 1 ? messages[0] : messages[1]}
           </Toast.Body>
         </Toast>
-      </Container>
-      <Container className="detail-container my-5">
+      </Container> */}
+      <Container className="detail-container mt-5 mb-2">
         <Row className="text-center py-4">
           <Col>
             <img
@@ -95,7 +108,6 @@ export const ItemDetail = ({
                     to={"/"}
                   >
                     <i className="bi bi-arrow-left-circle"> Volver</i>
-                    
                   </Link>
                 </Button>
                 <Button
@@ -117,6 +129,20 @@ export const ItemDetail = ({
             )}
           </Col>
         </Row>
+      </Container>
+      <Container fluid>
+        <Toast
+          className="m-auto"
+          onClose={() => setShow(false)}
+          bg="info"
+          show={toastStatus.show}
+          delay={3000}
+          autohide
+        >
+          <Toast.Body className="text-center">
+            {toastStatus.currentQuantity > 1 ? messages[0] : messages[1]}
+          </Toast.Body>
+        </Toast>
       </Container>
     </>
   );

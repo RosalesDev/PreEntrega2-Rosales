@@ -1,7 +1,23 @@
 import { Button, Row } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 export const CartRow = ({product, removeItem }) => {
 
+  function handleDelete(productId){
+    Swal.fire({
+      title: '¿Seguro?',
+      text: "¿Desea quitar el producto del carrito?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeItem(productId)
+      }
+    })
+  }
 
   return (
     <Row className="my-2">
@@ -15,7 +31,7 @@ export const CartRow = ({product, removeItem }) => {
       <Button
         className="col-1 col-lg-1 w-auto m-auto"
         variant="danger"
-        onClick={() => removeItem(product.id)}
+        onClick={() => handleDelete(product.id)}
       >
         <i className="text-center bi bi-trash3-fill"></i>
       </Button>

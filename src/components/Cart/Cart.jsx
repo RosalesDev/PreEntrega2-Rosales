@@ -4,17 +4,51 @@ import { Alert, Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CartRow } from "./CartRow/CartRow";
 import "./Cart.css";
+import Swal from "sweetalert2";
 
 export const Cart = () => {
   const { cart, removeItem, clearCart, total } = useContext(CartContext);
 
+  function handleClear() {
+    Swal.fire({
+      title: "¿Seguro?",
+      text: "¿Desea vaciar el carrito?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Vaciar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearCart();
+      }
+    });
+  }
+
   return cart.length === 0 ? (
-    <Alert className="text-center m-5">El carrito está vacío.</Alert>
+    <>
+      <Alert className="text-center m-5 fw-medium" variant="danger">
+        El carrito está vacío.
+      </Alert>
+      <div className="d-grid">
+        <Link to={"/"} className="btn cart-btn-back w-25 m-auto fw-medium">
+          Volver
+        </Link>
+      </div>
+    </>
   ) : (
     <Container className="my-5">
       <h1 className="mb-5 text-center">Detalle del carrito</h1>
+      <Row className="justify-content-end">
+        <Button
+          className="col-6 mx-1 col-lg-2 mb-4"
+          variant="outline-danger"
+          onClick={() => handleClear()}
+        >
+          Vaciar Carrito
+        </Button>
+      </Row>
       {cart.map((product, index) => {
-        console.log(product.quantity);
         return (
           <div key={product.id}>
             <CartRow
@@ -27,20 +61,9 @@ export const Cart = () => {
           </div>
         );
       })}
-      <Row className="justify-content-end">
-        <Button
-          className="col-lg-2 mb-4 py-2 fs-6"
-          size="lg"
-          variant="danger"
-          onClick={clearCart}
-        >
-          <i className="bi bi-x-circle">
-            <span className="px-1 text-light fw-semibold">Limpiar Carrito</span>
-          </i>
-        </Button>
-      </Row>
+
       <Row>
-        <Col className="d-flex justify-content-end">
+        <Col className="text-center">
           <div className="alert alert-info">
             <h5>Total: ${total}</h5>
           </div>
