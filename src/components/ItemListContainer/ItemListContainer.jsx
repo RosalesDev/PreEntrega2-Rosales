@@ -4,6 +4,7 @@ import {db} from "../../config/firebaseConfig"
 import {where, query, collection, getDocs} from "firebase/firestore"
 import { ItemList } from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function ItemListContainer({ greeting }) {
   const [products, setProducts] = useState([]);
@@ -27,7 +28,13 @@ function ItemListContainer({ greeting }) {
         setProducts(productsAdapted);
       })
       .catch(error => {
-        console.log('Error al obtener los productos: ',error);
+        Swal.fire({
+          title: "ERROR",
+          text: "Ocurrió un error al intentar obtener los productos.",
+          icon: "warning",
+          confirmButtonText: "Ok",
+        });
+        console.error('Error al obtener los productos: ',error);
       })
       .finally(() => {
         setIsLoading(false);

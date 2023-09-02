@@ -11,8 +11,8 @@ export const Cart = () => {
 
   function handleClear() {
     Swal.fire({
-      title: "¿Seguro?",
-      text: "¿Desea vaciar el carrito?",
+      title: "Vaciar el carrito",
+      text: "¿Seguro que desea vaciar el carrito?",
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

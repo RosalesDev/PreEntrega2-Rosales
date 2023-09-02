@@ -5,7 +5,7 @@ export const CartRow = ({product, removeItem }) => {
 
   function handleDelete(productId){
     Swal.fire({
-      title: '¿Seguro?',
+      title: 'Quitar producto',
       text: "¿Desea quitar el producto del carrito?",
       icon: 'question',
       showCancelButton: true,

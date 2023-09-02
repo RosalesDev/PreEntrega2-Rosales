@@ -7,7 +7,6 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  console.log(cart);
   const quantityProductsInCart =
     cart.length === 0
       ? 0
@@ -20,13 +19,11 @@ export const CartProvider = ({ children }) => {
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
   if (!localStorage.getItem("cart") && cart.length > 0) {
-    console.log('No hay localStorage supuestamente');
     const localCart = JSON.stringify(cart);
     localStorage.setItem("cart", localCart);
   }
 
   useEffect(() => {
-    console.log('UseEffect');
     if (localStorage.getItem("cart")) {
       let localCart = [];
       localCart = JSON.parse(localStorage.getItem("cart"));
@@ -40,14 +37,13 @@ export const CartProvider = ({ children }) => {
 
     if (!existInCart(item.id)) {
       if (localStorage.getItem("cart")) {
-        console.log(JSON.parse(localStorage.getItem("cart")));
         localCart = JSON.parse(localStorage.getItem("cart"));
         localCart.push(objToLocalCart);
         localStorage.setItem("cart", JSON.stringify(localCart));
       }
       setCart((prev) => [...prev, objToLocalCart]);
     } else {
-      console.log("El producto ya fue agregado");
+      console.info("El producto ya fue agregado");
     }
   }
 

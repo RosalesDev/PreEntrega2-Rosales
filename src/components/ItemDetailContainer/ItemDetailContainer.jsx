@@ -28,7 +28,13 @@ export const ItemDetailContainer = () => {
         }
       })
       .catch((error) => {
-        console.log("Error al obtener el producto.", error);
+        Swal.fire({
+          title: "ERROR",
+          text: "Ocurrió un error al intentar obtener el producto.",
+          icon: "warning",
+          confirmButtonText: "Ok",
+        });
+        console.error('Error al obtener el producto: ',error);
       })
       .finally(() => {
         setIsLoading(false);
